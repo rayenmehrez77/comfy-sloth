@@ -1,0 +1,28 @@
+$background-color: #f1f5f8;
+$headline-color: #102a42;
+$main-color: #af8067;
+
+.features {
+  padding: 4rem 0;
+  background-color: #f1f5f8;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    color: $headline-color;
+  }
+
+  &__underline {
+    border-bottom: 3px solid $main-color;
+    width: 8rem;
+    padding-top: 1rem;
+    margin: 0 auto;
+  }
+
+  &__products {
+    margin: 4rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}

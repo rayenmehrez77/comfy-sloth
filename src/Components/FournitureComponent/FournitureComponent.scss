@@ -1,0 +1,29 @@
+$main-color: #c5a491;
+
+.fourniture-component {
+  width: 20rem;
+  margin: 2rem;
+  background-color: $main-color;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: #e7d7ce;
+    padding: 7px;
+    border-radius: 50%;
+  }
+
+  h2 {
+    padding: 0.7rem;
+    color: #110d0c;
+  }
+
+  p {
+    color: #252221;
+    font-weight: 400;
+    word-spacing: 5px;
+  }
+}

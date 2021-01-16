@@ -1,0 +1,54 @@
+.signup-page {
+  padding-top: 4rem;
+
+  &__content {
+    h1 {
+      span {
+        color: rgba(109, 81, 59, 0.89);
+      }
+    }
+  }
+  &__info {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    img {
+      width: 80%;
+      object-fit: cover;
+    }
+  }
+
+  &__signup {
+    margin: 1rem 0;
+
+    & span {
+      font-weight: 600;
+      color: rgb(73, 72, 72);
+      margin-right: 0.6rem;
+    }
+  }
+  &-link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(0, 143, 226);
+  }
+
+  &__underline {
+    border-bottom: 2px solid rgba(109, 81, 59, 0.616);
+    padding: 4px;
+    width: 10rem;
+  }
+
+  &__form {
+    margin-top: 1rem;
+    width: 26rem;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

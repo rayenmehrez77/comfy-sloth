@@ -1,0 +1,28 @@
+.story {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2rem;
+  padding: 3rem 4.5rem;
+
+  h1 {
+    color: #102a42;
+  }
+
+  &__underline {
+    border-bottom: 3px solid #ab7a5f;
+    width: 4rem;
+    margin: 0.6rem 0;
+  }
+
+  p {
+    line-height: 2;
+    color: rgb(70, 70, 70);
+  }
+
+  img {
+    width: 33rem;
+    height: 25rem;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+}

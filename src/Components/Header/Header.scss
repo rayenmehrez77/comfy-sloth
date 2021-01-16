@@ -1,0 +1,99 @@
+$main-color: #af8067;
+$link-color: rgb(41, 42, 43);
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  background-color: rgb(250, 250, 250);
+  box-shadow: 5px 3px 8px rgba($color: #000000, $alpha: 0.1);
+  &__navbar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    & li {
+      margin-right: 1.6rem;
+      font-weight: 600;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: $link-color;
+    padding: 0.5px;
+
+    &:hover {
+      border-bottom: 3px solid $main-color;
+    }
+  }
+
+  &__logo {
+    width: 9rem;
+    height: 100%;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__signup,
+  &__cart {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    position: relative;
+
+    & div {
+      font-weight: 600;
+      color: $link-color;
+      margin-right: 0.5rem;
+    }
+  }
+  &__icon {
+    color: $link-color;
+  }
+
+  &__basket {
+    color: $link-color;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    background-color: $main-color;
+    padding: 3px;
+    border-radius: 50px;
+    width: 1.2rem;
+    position: relative;
+    height: 1.2rem;
+    top: -0.5rem;
+    right: 1rem;
+
+    & span {
+      color: #fff;
+      justify-self: center;
+      align-self: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      position: absolute;
+      top: 49%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100%;
+    }
+  }
+
+  &__signup {
+    display: flex;
+    align-items: center;
+  }
+}

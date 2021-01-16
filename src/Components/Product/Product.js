@@ -1,6 +1,7 @@
 import React from "react";
 import "./Product.scss";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 function Product({ price, image, name }) {
   return (
@@ -22,4 +23,4 @@ function Product({ price, image, name }) {
   );
 }
 
-export default Product;
+export default withRouter(Product);

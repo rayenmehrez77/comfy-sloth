@@ -4,8 +4,9 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { FaUserPlus } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/firebase.utils";
 
-function Header() {
+function Header({ currentUser }) {
   return (
     <div className="header">
       <Link to="/" className="header__logo-container">
@@ -38,10 +39,21 @@ function Header() {
             <span>0</span>
           </div>
         </Link>
-        <Link to="/signup" className="header__signup">
-          <div>Sign up</div>
-          <FaUserPlus className="header__icon" />
-        </Link>
+        {currentUser ? (
+          <Link
+            to="/signup"
+            className="header__signup"
+            onClick={() => auth.signOut()}
+          >
+            <div>Sign out</div>
+            <FaUserPlus className="header__icon" />
+          </Link>
+        ) : (
+          <Link to="/signup" className="header__signup">
+            <div>Sign in</div>
+            <FaUserPlus className="header__icon" />
+          </Link>
+        )}
       </div>
     </div>
   );

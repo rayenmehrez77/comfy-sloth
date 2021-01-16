@@ -11,7 +11,7 @@ function Features({ products }) {
       <div className="features__underline"></div>
       <div className="features__products">
         {products
-          .filter((item, idx) => idx < 3)
+          .filter((_, idx) => idx < 3)
           .map(({ id, ...otherProps }) => (
             <Product key={id} {...otherProps} />
           ))}

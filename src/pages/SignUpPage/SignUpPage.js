@@ -5,7 +5,6 @@ import image from "../../assets/undraw_work_from_anywhere_7sdx.svg";
 import { Link } from "react-router-dom";
 import FormInput from "../../Components/FormInput/FormInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
-import { ReactComponent as LogoGoogle } from "../../assets/search.svg";
 
 class SignUpPage extends React.Component {
   constructor() {
@@ -55,8 +54,8 @@ class SignUpPage extends React.Component {
               <form className="signup-page__form" onSubmit={this.handleSubmit}>
                 <FormInput
                   label="Name: "
-                  name="text"
-                  type="name"
+                  name="name"
+                  type="text"
                   value={name}
                   handleChange={this.handleChange}
                   required
@@ -79,15 +78,16 @@ class SignUpPage extends React.Component {
                 />
                 <FormInput
                   label="Confirm Password: "
-                  name="password"
+                  name="confirmPassword"
                   type="password"
                   value={confirmPassword}
                   handleChange={this.handleChange}
                   required
                 />
                 <div className="signup-page__buttons">
-                  <CustomButton>Create an account</CustomButton>
-                  <CustomButton isGoogle>Sign in with Google</CustomButton>
+                  <CustomButton type="Submit" name="submit">
+                    Create an account
+                  </CustomButton>
                 </div>
               </form>
             </div>

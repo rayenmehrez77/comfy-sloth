@@ -21,8 +21,8 @@ function Hero() {
         </Link>
       </div>
       <div className="hero__right">
-        <img src={bg} alt="background image" className="hero__right-img1" />
-        <img src={bg2} alt="background image 2" className="hero__right-img2" />
+        <img src={bg} alt="image" className="hero__right-img1" />
+        <img src={bg2} alt="image" className="hero__right-img2" />
       </div>
     </div>
   );

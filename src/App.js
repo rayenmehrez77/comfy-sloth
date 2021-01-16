@@ -6,7 +6,7 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import SignInPage from "./pages/SignInPage/SignInPage";
 import CartPage from "./pages/CartPage/CartPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
@@ -40,7 +40,7 @@ class App extends React.Component {
           <Route exact path="/products" component={ProductsPage} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/signup" component={SignUpPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signin" component={SignInPage} />
         </Switch>
         <Footer />
       </>

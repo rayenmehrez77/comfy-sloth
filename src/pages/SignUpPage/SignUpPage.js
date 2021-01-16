@@ -49,7 +49,7 @@ class SignUpPage extends React.Component {
             <div className="signup-page__underline"></div>
             <div className="signup-page__signup">
               <span>I already have an account </span>
-              <Link to="/login" className="signup-page-link ">
+              <Link to="/signin" className="signup-page-link ">
                 Log in
               </Link>
               <form className="signup-page__form" onSubmit={this.handleSubmit}>

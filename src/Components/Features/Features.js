@@ -17,7 +17,7 @@ function Features({ products }) {
           ))}
       </div>
       <Link to="/products">
-        <CustomButton centered>All Products</CustomButton>
+        <button className="features__btn">All Products</button>
       </Link>
     </div>
   );

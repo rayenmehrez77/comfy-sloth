@@ -2,11 +2,14 @@ import React from "react";
 import "./Header.scss";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { FaUserPlus } from "react-icons/fa";
-import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import CartDropdown from "../CartDropdown/CartDropdown";
+import CartIcon from "../CartIcon/CartIcon";
 
-function Header({ currentUser }) {
+function Header({ currentUser, hidden, toggleCartHidden }) {
   return (
     <div className="header">
       <Link to="/" className="header__logo-container">
@@ -34,11 +37,8 @@ function Header({ currentUser }) {
       <div className="header__right">
         <Link to="/cart" className="header__cart">
           <div>Cart</div>
-          <FiShoppingCart className="header__icon" />
-          <div className="header__basket">
-            <span>0</span>
-          </div>
         </Link>
+        <CartIcon />
         {currentUser ? (
           <Link
             to="/signup"
@@ -54,9 +54,19 @@ function Header({ currentUser }) {
             <FaUserPlus className="header__icon" />
           </Link>
         )}
-      </div>
+      </div>{" "}
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 }
 
-export default Header;
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

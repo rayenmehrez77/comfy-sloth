@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
@@ -8,7 +8,9 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import CartPage from "./pages/CartPage/CartPage";
-import { auth } from "./firebase/firebase.utils";
+import { connect } from "react-redux";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { setCurrentUser } from "./redux/user/user.actions";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 class App extends React.Component {
@@ -17,20 +19,31 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      currentUser: null,
     };
   }
 
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
-    });
+    const { setCurrentUser } = this.props;
     fetch("https://course-api.com/react-store-products/")
       .then((response) => response.json())
       .then((data) => this.setState({ products: data }));
+
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
+    });
   }
 
   // Unsubcribe from the current account
@@ -39,25 +52,44 @@ class App extends React.Component {
   }
 
   render() {
-    const { products, currentUser } = this.state;
     return (
       <>
-        <Header currentUser={currentUser} />
+        <Header />
         <Switch>
           <Route
             exact
             path="/"
-            component={() => <HomePage products={products} />}
+            component={() => <HomePage products={this.state.products} />}
           />
           <Route exact path="/about" component={AboutPage} />
           <Route
             exact
             path="/products"
-            component={() => <ProductsPage products={products} />}
+            component={() => <ProductsPage products={this.state.products} />}
           />
           <Route exact path="/cart" component={CartPage} />
-          <Route exact path="/signup" component={SignUpPage} />
-          <Route exact path="/signin" component={SignInPage} />
+          <Route
+            exact
+            path="/signup"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/products" />
+              ) : (
+                <SignUpPage />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/products" />
+              ) : (
+                <SignInPage />
+              )
+            }
+          />
         </Switch>
         <Footer />
       </>
@@ -65,4 +97,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ user: { currentUser } }) => ({
+  currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

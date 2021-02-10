@@ -50,7 +50,6 @@ $link-color: rgb(41, 42, 43);
   &__cart {
     display: flex;
     align-items: center;
-    margin-right: 1.5rem;
     text-decoration: none;
     font-size: 1.3rem;
     position: relative;
@@ -63,33 +62,6 @@ $link-color: rgb(41, 42, 43);
   }
   &__icon {
     color: $link-color;
-  }
-
-  &__basket {
-    color: $link-color;
-    font-weight: 700;
-    margin-left: 0.5rem;
-    background-color: $main-color;
-    padding: 3px;
-    border-radius: 50px;
-    width: 1.2rem;
-    position: relative;
-    height: 1.2rem;
-    top: -0.5rem;
-    right: 1rem;
-
-    & span {
-      color: #fff;
-      justify-self: center;
-      align-self: center;
-      font-weight: 600;
-      font-size: 0.8rem;
-      position: absolute;
-      top: 49%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 100%;
-    }
   }
 
   &__signup {

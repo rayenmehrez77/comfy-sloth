@@ -12,13 +12,19 @@
   &__input {
     display: block;
     margin: 1rem auto;
-    width: 20rem;
-    height: 2rem;
+    width: 26rem;
+    height: 2.5rem;
     outline-style: none;
-    padding: 0.5rem;
+    padding: 0.7rem;
     border-radius: 8px;
     border: 2px solid rgb(100, 82, 42);
     color: rgb(100, 82, 42);
     font-weight: 600;
+  }
+
+  &__title {
+    padding: 2rem 6rem;
+    color: rgb(3, 3, 49);
+    letter-spacing: 3px;
   }
 }

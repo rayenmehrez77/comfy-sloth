@@ -5,26 +5,47 @@ import image from "../../assets/undraw_work_from_anywhere_7sdx.svg";
 import { Link } from "react-router-dom";
 import FormInput from "../../Components/FormInput/FormInput";
 import CustomButton from "../../Components/CustomButton/CustomButton";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 class SignUpPage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      name: "",
+      displayName: "",
       email: "",
       password: "",
       confirmPassword: "",
     };
   }
 
-  handleSubmit = () => {
-    this.setState({
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { displayName, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("Password don't match ");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, { displayName });
+
+      this.setState({
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   handleChange = (event) => {
@@ -34,7 +55,7 @@ class SignUpPage extends React.Component {
   };
 
   render() {
-    const { name, email, password, confirmPassword } = this.state;
+    const { displayName, email, password, confirmPassword } = this.state;
 
     return (
       <div className="signup-page">
@@ -54,9 +75,9 @@ class SignUpPage extends React.Component {
               <form className="signup-page__form" onSubmit={this.handleSubmit}>
                 <FormInput
                   label="Name: "
-                  name="name"
+                  name="displayName"
                   type="text"
-                  value={name}
+                  value={displayName}
                   handleChange={this.handleChange}
                   required
                 />
@@ -85,7 +106,7 @@ class SignUpPage extends React.Component {
                   required
                 />
                 <div className="signup-page__buttons">
-                  <CustomButton type="Submit" name="submit">
+                  <CustomButton type="submit" name="submit">
                     Create an account
                   </CustomButton>
                 </div>

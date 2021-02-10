@@ -1,37 +1,41 @@
-import React, { useEffect, useState } from "react";
-import FormInput from "../../Components/FormInput/FormInput";
 import NavigationComponent from "../../Components/NavigationComponent/NavigationComponent";
 import Product from "../../Components/Product/Product";
 import "./ProductPage.scss";
+import { connect } from "react-redux";
+import { useState } from "react";
 
-function ProductsPage({ products }) {
-  // const { loading, setLoading } = useState(false);
-  // const { data, setData } = useState([]);
+const ProductsPage = ({ products, currentUser }) => {
+  const [search, setSearch] = useState("");
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setData(products);
-  // }, []);
-
-  // if (loading) {
-  //   <div>Loading</div>;
-  // }
+  const filteredProducts = products.filter((product) => {
+    return product.name.toLowerCase().includes(search.toLowerCase());
+  });
 
   return (
     <div className="products-page">
       <NavigationComponent link="Products" />
+      {currentUser ? (
+        <h1 className="products-page__title">
+          Welcome back, {currentUser.displayName}
+        </h1>
+      ) : null}
       <input
         className="products-page__input"
-        type="text"
+        type="search"
         placeholder="Search..."
+        onChange={(e) => setSearch(e.target.value)}
       />
       <div className="products-page__content">
-        {products.map(({ id, ...otherProps }) => {
+        {filteredProducts.map(({ id, ...otherProps }) => {
           return <Product key={id} {...otherProps} />;
         })}
       </div>
     </div>
   );
-}
+};
 
-export default ProductsPage;
+const mapStateToProps = ({ user: { currentUser } }) => ({
+  currentUser,
+});
+
+export default connect(mapStateToProps)(ProductsPage);

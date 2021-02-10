@@ -1,0 +1,29 @@
+.cart-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  position: relative;
+
+  &__icon {
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #af8067;
+  }
+
+  & span {
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    position: absolute;
+    background-color: #af8067;
+    border-radius: 50px;
+    padding-left: 5.5px;
+    width: 19px;
+    height: 19px;
+    top: 0;
+    right: -20px;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -12,34 +12,32 @@ const config = {
   measurementId: "G-J65GD2S8D2",
 };
 
-// export const createUserProfileDocument = async (userAuth, additionalData) => {
-//   if (!userAuth) return;
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
 
-//   const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-//   const snapshot = await userRef.get();
+  const snapshot = await userRef.get();
 
-//   if (!snapshot.exists) {
-//     console.log(userAuth);
-//     const { displayName, email, photoURL } = userAuth;
+  if (!snapshot.exists) {
+    const { displayName, email, photoURL } = userAuth;
 
-//     const createAt = new Date();
+    const createAt = new Date();
 
-//     try {
-//       await userRef.set({
-//         displayName,
-//         email,
-//         createAt,
-//         photoURL,
-//         ...additionalData,
-//       });
-//     } catch (error) {
-//       console.log("Error creating user", error.message);
-//     }
-//   }
-
-//   return userRef;
-// };
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createAt,
+        photoURL,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("Error creating user", error.message);
+    }
+  }
+  return userRef;
+};
 
 // Initialize the app
 firebase.initializeApp(config);

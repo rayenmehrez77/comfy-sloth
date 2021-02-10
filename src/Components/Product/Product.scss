@@ -28,15 +28,36 @@ $main-color: #af8067;
     color: #fff;
   }
 
+  .btn {
+    padding: 0.5rem 2rem;
+    border: none;
+    background-color: #af8067;
+    color: #fff;
+    font-weight: 700;
+    position: absolute;
+    bottom: 1rem;
+    left: 7rem;
+    cursor: pointer;
+    outline-style: none;
+    display: none;
+  }
+
   &__img {
     width: 100%;
     height: 100%;
     box-shadow: 2px 3px 8px rgba($color: #000000, $alpha: 0.3);
     object-fit: cover;
     border-radius: 0.6rem;
+    position: relative;
+  }
 
-    &:hover {
-      cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    &__img {
+      opacity: 0.4;
+    }
+    .btn {
+      display: flex;
     }
   }
 

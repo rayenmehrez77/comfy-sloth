@@ -1,5 +1,4 @@
 import React from "react";
-import CustomButton from "../CustomButton/CustomButton";
 import Product from "../Product/Product";
 import { Link } from "react-router-dom";
 import "./Features.scss";

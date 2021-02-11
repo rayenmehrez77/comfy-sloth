@@ -26,9 +26,9 @@ const ProductsPage = ({ products, currentUser }) => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <div className="products-page__content">
-        {filteredProducts.map(({ id, ...otherProps }) => {
-          return <Product key={id} {...otherProps} />;
-        })}
+        {filteredProducts.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );

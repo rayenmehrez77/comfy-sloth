@@ -19,12 +19,7 @@ $light-color: #bb9784;
     color: #64412e;
     background-color: $light-color;
   }
-
-  & .large {
-    padding: 0.8rem 1rem;
-  }
 }
-
 .is-google {
   outline-style: none;
   cursor: pointer;
@@ -38,5 +33,15 @@ $light-color: #bb9784;
   height: 2.5rem;
   &:hover {
     background-color: rgb(0, 56, 88);
+  }
+
+  .inverted {
+    color: #64412e;
+    background-color: $light-color;
+
+    &:hover {
+      color: #fff;
+      background-color: $btn-color;
+    }
   }
 }

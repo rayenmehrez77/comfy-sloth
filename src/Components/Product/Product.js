@@ -1,10 +1,14 @@
 import React from "react";
 import "./Product.scss";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
+import CustomButton from "../CustomButton/CustomButton";
+import { addItem } from "../../redux/cart/cart.actions";
+import { connect } from "react-redux";
 
-function Product({ price, image, name }) {
+function Product({ item, addItem }) {
+  const { name, price, image } = item || {};
+
   return (
     <article className="product">
       <Link to="/products/" className="product__searchbox">
@@ -20,9 +24,15 @@ function Product({ price, image, name }) {
           }).format(price)}
         </span>
       </div>
-      <button className="btn">Add to Cart</button>
+      <CustomButton inverted onClick={() => addItem(item)}>
+        Add to Cart
+      </CustomButton>
     </article>
   );
 }
 
-export default withRouter(Product);
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(Product);

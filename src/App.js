@@ -12,13 +12,14 @@ import { connect } from "react-redux";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
+import { SHOP_DATA } from "./data/ShopData";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      products: [],
+      products: SHOP_DATA,
     };
   }
 
@@ -26,9 +27,9 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
-    fetch("https://course-api.com/react-store-products/")
-      .then((response) => response.json())
-      .then((data) => this.setState({ products: data }));
+    // fetch("https://course-api.com/react-store-products/")
+    //   .then((response) => response.json())
+    //   .then((data) => this.setState({ products: data }));
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -52,6 +53,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { products } = this.state;
     return (
       <>
         <Header />
@@ -59,13 +61,13 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            component={() => <HomePage products={this.state.products} />}
+            component={() => <HomePage products={products} />}
           />
           <Route exact path="/about" component={AboutPage} />
           <Route
             exact
             path="/products"
-            component={() => <ProductsPage products={this.state.products} />}
+            component={() => <ProductsPage products={products} />}
           />
           <Route exact path="/cart" component={CartPage} />
           <Route

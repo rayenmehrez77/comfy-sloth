@@ -1,17 +1,28 @@
 .cart-dropdown {
   position: absolute;
-  top: 80px;
-  right: 40px;
+  top: 70px;
+  right: 22px;
   height: 350px;
   width: 300px;
   z-index: 5;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #ad775a;
   border-radius: 10px;
+  overflow-y: scroll;
 
   .custom-button {
     position: absolute;
     bottom: 10px;
     left: 60px;
+  }
+
+  .arrow {
+    height: 40px;
+    width: 50px;
+    position: absolute;
+    top: -24px;
+    left: 141px;
+    font-size: 1.8rem;
+    color: #ad775a;
   }
 }
